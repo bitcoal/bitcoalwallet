@@ -96,7 +96,7 @@ class Uint64ComparatorImpl : public Comparator {
 };
 }  // namespace
 
-static port::OnceType once = LEVELDB_ONCE_INIT;
+static port::OnceType once;
 static const Comparator* uint64comp;
 
 static void InitModule() {
@@ -104,7 +104,7 @@ static void InitModule() {
 }
 
 const Comparator* Uint64Comparator() {
-  port::InitOnce(&once, InitModule);
+  std::call_once(once, InitModule);
   return uint64comp;
 }
 

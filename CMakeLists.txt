@@ -25,12 +25,10 @@ find_package(Qt5DBus REQUIRED)
 
 include_directories(${Qt5DBus_INCLUDE_DIRS} cryptonote/external/rocksdb/include/ include src external "${CMAKE_CURRENT_BINARY_DIR}/version")
 
-set(Boost_USE_STATIC_LIBS ON)
-if(WIN32)
-  set(Boost_USE_STATIC_RUNTIME OFF)
-else(WIN32)
+if(STATIC)
+  set(Boost_USE_STATIC_LIBS ON)
   set(Boost_USE_STATIC_RUNTIME ON)
-endif(WIN32)
+endif()
 
 find_package(Boost 1.58 REQUIRED COMPONENTS date_time filesystem program_options regex serialization system thread chrono)
 if ((${Boost_MAJOR_VERSION} EQUAL 1) AND (${Boost_MINOR_VERSION} EQUAL 54))
@@ -164,9 +162,18 @@ if (WIN32)
   if (NOT MSVC)
     message(FATAL_ERROR "Only MSVC is supported on this platform")
   endif ()
+  
+  set(STATIC ${MSVC} CACHE BOOL "Link libraries statically")
+
+  if(STATIC)
+    foreach(VAR CMAKE_C_FLAGS_DEBUG CMAKE_CXX_FLAGS_DEBUG CMAKE_C_FLAGS_RELWITHDEBINFO CMAKE_CXX_FLAGS_RELWITHDEBINFO CMAKE_C_FLAGS_RELEASE CMAKE_CXX_FLAGS_RELEASE)
+      string(REPLACE "/MD" "/MT" ${VAR} "${${VAR}}")
+    endforeach()
+  endif()
 
   add_definitions(/D_CRT_SECURE_NO_WARNINGS /D_WIN32_WINNT=0x0600 /DSTATICLIB)
   include_directories(cryptonote/src/Platform/msc)
+  link_directories(cryptonote/external/rocksdb)
 
   set(PLATFORM_DIR Windows)
   set(BUILD_PLATFORM WIN32)
@@ -241,7 +248,7 @@ if (APPLE)
 elseif (UNIX)
   target_link_libraries(${PROJECT_NAME} -lpthread)
 elseif (WIN32)
-  target_link_libraries(${PROJECT_NAME} Imm32 Iphlpapi Winmm)
+  target_link_libraries(${PROJECT_NAME} Imm32 Iphlpapi Winmm UxTheme d3d9 dxguid Rpcrt4 Wtsapi32 Dwmapi "${_qt5Widgets_install_prefix}/lib/qtharfbuzz.lib" "${_qt5Widgets_install_prefix}/lib/qtlibpng.lib" "${_qt5Widgets_install_prefix}/lib/qtpcre.lib" "${_qt5Widgets_install_prefix}/lib/Qt5EventDispatcherSupport.lib" "${_qt5Widgets_install_prefix}/lib/Qt5OpenGL.lib" "${_qt5Widgets_install_prefix}/lib/Qt5AccessibilitySupport.lib" "${_qt5Widgets_install_prefix}/lib/Qt5ThemeSupport.lib" "${_qt5Widgets_install_prefix}/lib/libGLESv2.lib" "${_qt5Widgets_install_prefix}/lib/libEGL.lib" "${_qt5Widgets_install_prefix}/lib/qtfreetype.lib" "${_qt5Widgets_install_prefix}/lib/Qt5FontDatabaseSupport.lib" "${_qt5Widgets_install_prefix}/lib/preprocessor.lib" "${_qt5Widgets_install_prefix}/lib/translator.lib" "${_qt5Widgets_install_prefix}/plugins/platforms/qwindows.lib")
 endif (APPLE)
 
 qt5_use_modules(${PROJECT_NAME} Widgets Gui Network)

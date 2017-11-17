@@ -107,7 +107,7 @@ bool CryptoNoteAdapter::isValidPaymentId(const QString& _paymentId) const {
 }
 
 QString CryptoNoteAdapter::getCurrencyTicker() const {
-  return "cc";
+  return "coal";
 }
 
 quint64 CryptoNoteAdapter::getMinimalFee() const {

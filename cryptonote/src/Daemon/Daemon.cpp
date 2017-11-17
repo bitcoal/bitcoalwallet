@@ -385,7 +385,7 @@ command_line::add_arg(desc_cmd_sett, arg_print_genesis_tx);
       }
 
       boost::system::error_code ec;
-      if (boost::filesystem::exists(config_path, ec)) {
+      /*if (boost::filesystem::exists(config_path, ec)) {
         std::cout << "Success: Configuration file openned: " << config_path << std::endl;
         po::store(po::parse_config_file<char>(config_path.string<std::string>().c_str(), desc_cmd_sett, true), vm);
       }
@@ -397,7 +397,7 @@ command_line::add_arg(desc_cmd_sett, arg_print_genesis_tx);
         std::cout << "Windows:   forknoted.exe --config-file configs/dashcoin.conf" << std::endl;
         std::cout << "Linux/Mac:   ./forknoted --config-file configs/dashcoin.conf" << std::endl;
         return false;
-      }
+      }*/
       po::notify(vm);
       if (command_line::get_arg(vm, command_line::arg_data_dir) == Tools::getDefaultDataDirectory() && command_line::has_arg(vm, arg_CRYPTONOTE_NAME) && !command_line::get_arg(vm, arg_CRYPTONOTE_NAME).empty()) {
         boost::replace_all(data_dir, CryptoNote::CRYPTONOTE_NAME, command_line::get_arg(vm, arg_CRYPTONOTE_NAME));

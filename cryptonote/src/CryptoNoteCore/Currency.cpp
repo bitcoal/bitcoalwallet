@@ -831,6 +831,9 @@ genesisBlockReward(parameters::GENESIS_BLOCK_REWARD);
 cryptonoteCoinVersion(parameters::CRYPTONOTE_COIN_VERSION);
 
   rewardBlocksWindow(parameters::CRYPTONOTE_REWARD_BLOCKS_WINDOW);
+  blockGrantedFullRewardZone(parameters::CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE);
+  blockGrantedFullRewardZoneV1(parameters::CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V1);
+  blockGrantedFullRewardZoneV2(parameters::CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V2);
 minMixin(parameters::MIN_MIXIN);
 mandatoryMixinBlockVersion(parameters::MANDATORY_MIXIN_BLOCK_VERSION);
 mixinStartHeight(parameters::MIXIN_START_HEIGHT);

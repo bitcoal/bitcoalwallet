@@ -33,7 +33,7 @@ namespace WalletGui {
 
 namespace {
 
-const QDateTime EPOCH_DATE_TIME = QDateTime::fromMSecsSinceEpoch(0);
+const QDateTime EPOCH_DATE_TIME = QDateTime::fromMSecsSinceEpoch(0).toUTC();
 const int TEMP_MESSAGE_DURATION = 3000;
 const int MSECS_IN_MINUTE = 60 * 1000;
 const int MSECS_IN_HOUR = 60 * MSECS_IN_MINUTE;
