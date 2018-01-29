@@ -855,7 +855,11 @@ maxTransactionSizeLimit(parameters::MAX_TRANSACTION_SIZE_LIMIT);
 
   difficultyTarget(parameters::DIFFICULTY_TARGET);
   difficultyWindow(parameters::DIFFICULTY_WINDOW);
+  m_currency.m_difficultyWindowV1=parameters::DIFFICULTY_WINDOW;
+  m_currency.m_difficultyWindowV2=parameters::DIFFICULTY_WINDOW;
   difficultyLag(parameters::DIFFICULTY_LAG);
+  m_currency.m_difficultyLagV1=parameters::DIFFICULTY_LAG;
+  m_currency.m_difficultyLagV2=parameters::DIFFICULTY_LAG;
   difficultyCut(parameters::DIFFICULTY_CUT);
 
   maxBlockSizeInitial(parameters::MAX_BLOCK_SIZE_INITIAL);
