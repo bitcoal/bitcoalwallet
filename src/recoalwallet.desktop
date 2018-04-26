@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=ReCoal Wallet
+Comment=ReCoal wallet
+Exec=recoalwallet %U
+Terminal=false
+Type=Application
+Icon=recoal
+MimeType=x-scheme-handler/recoal;
+Categories=Office;Finance;
