@@ -101,10 +101,10 @@
         <file alias="bitcoal_lin">images/bitcoal.png</file>
         <file alias="add_address_helper">images/add_address_helper.png</file>
         <file alias="bitcoal_mac">images/bitcoal.icns</file>
-        <file alias="bitcoal_win">images/bitcoal.ico</file>
+        <file alias="bitcoal_win">images/recoal.ico</file>
     </qresource>
     <qresource prefix="/style">
-        <file alias="qss">bitcoalwallet.qss</file>
+        <file alias="qss">recoal.qss</file>
     </qresource>
     <qresource prefix="/font">
         <file alias="Bold">font/OpenSans-Bold.ttf</file>
